@@ -5,7 +5,7 @@ export const PARTICIPANTES: Participante[] = [
     { id: '2', nombre: 'C.D.georgitos rojos' },
     { id: '3', nombre: 'R.C.D VIVERO' },
     { id: '4', nombre: 'AlonsoRo_6' },
-    { id: '5', nombre: 'Guille' },
+    { id: '5', nombre: 'GuilleZ' },
     { id: '6', nombre: 'PitufosFC' },
     { id: '7', nombre: 'Wakaru' },
     { id: '8', nombre: 'Inquisición FC' },
