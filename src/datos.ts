@@ -20,23 +20,37 @@ export const JORNADAS: JornadaLiga[] = [
             { participanteID: '1', puntos: 45 },
             { participanteID: '2', puntos: 52 },
             { participanteID: '3', puntos: 38 },
-            { participanteID: '4', puntos: 61 },
-            { participanteID: '5', puntos: 61 },
-            { participanteID: '6', puntos: 61 },
-            { participanteID: '7', puntos: 61 },
-            { participanteID: '8', puntos: 61 },
-            { participanteID: '9', puntos: 61 },
-            { participanteID: '10', puntos: 61 }            
+            { participanteID: '4', puntos: 33 },
+            { participanteID: '5', puntos: 46 },
+            { participanteID: '6', puntos: 60 },
+            { participanteID: '7', puntos: 107 },
+            { participanteID: '8', puntos: 96 },
+            { participanteID: '9', puntos: 58 },
+            { participanteID: '10', puntos: 77 }            
+        ]
+    },
+    {
+        numeroJornada: 2,
+        resultados: [
+            { participanteID: '1', puntos: 1 },
+            { participanteID: '2', puntos: 2 },
+            { participanteID: '3', puntos: 3 },
+            { participanteID: '4', puntos: 4 },
+            { participanteID: '5', puntos: 5 },
+            { participanteID: '6', puntos: 6 },
+            { participanteID: '7', puntos: 7 },
+            { participanteID: '8', puntos: 8 },
+            { participanteID: '9', puntos: 9 },
+            { participanteID: '10', puntos: 10 }            
         ]
     }
-    // Cuando acabe la jornada 2, añadirás otro bloque aquí abajo
 ];
 
 // 3. Configuración de vuestra Copa por parejas
 export const COPA: CompeticionCopa = {
     numeroJornadaLiga: 12, // Por ejemplo, se juega en la jornada 12
     parejas: [
-        { miembro1Id: '1', miembro2Id: '2' }, // Xavi y Dani hacen pareja
-        { miembro1Id: '3', miembro2Id: '4' }  // Carlos y Marc hacen pareja
+        { miembro1Id: '1', miembro2Id: '2' }, 
+        { miembro1Id: '3', miembro2Id: '4' }  
     ]
 };

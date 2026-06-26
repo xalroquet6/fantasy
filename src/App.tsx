@@ -21,6 +21,8 @@ export default function App() {
   const [pestanaActiva, setPestanaActiva] = useState<string>('liga');
   const [jugadorSeleccionado, setJugadorSeleccionado] = useState<string | null>(null);
 
+  jugadorSeleccionado
+
   const verPerfilJugador = (idJugador: string) => {
     setJugadorSeleccionado(idJugador);
     setPestanaActiva('jugadores');
@@ -56,6 +58,7 @@ export default function App() {
         <Liga 
           clasificacion={clasificacion} 
           PARTICIPANTES={PARTICIPANTES} 
+          JORNADAS = {JORNADAS}
           verPerfilJugador={verPerfilJugador} 
           tituloEstilo={ESTILOS.tituloSeccion} 
         />
@@ -87,13 +90,14 @@ export default function App() {
 
       {pestanaActiva === 'jugadores' && (
         <Jugadores 
-          titulo="Estadísticas de Jugadores" 
-          descripcion="Selecciona un jugador en la clasificación general para auditar sus números de la temporada." 
+          PARTICIPANTES={PARTICIPANTES}
+          JORNADAS={JORNADAS}
+          jugadorSeleccionado={jugadorSeleccionado}
+          setJugadorSeleccionado={setJugadorSeleccionado}
           tituloEstilo={ESTILOS.tituloSeccion}
-          tarjetaEstilo={ESTILOS.tarjetaContenedora}
-          textoEstilo={ESTILOS.textoSecundario}
         />
       )}
+      
 
     </div>
   );
