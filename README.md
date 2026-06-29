@@ -1,75 +1,112 @@
-# React + TypeScript + Vite
+# 🏆 La Liga Fantasy PALOS FC
+La aplicación permite seguir la clasificación general de la liga de amigos, ver el desglose detallado de puntos obtenidos por jornada, examinar estadísticas avanzadas de cada jugador y revisar el reglamento de la competición.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## 🛠️ Tecnologías Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+*   **[React 19](https://react.dev/):** Biblioteca para construir interfaces de usuario de forma declarativa e interactiva a través de componentes.
+*   **[TypeScript](https://www.typescriptlang.org/):** Tipado estático sobre JavaScript para prevenir errores en tiempo de desarrollo y estructurar datos de forma limpia.
+*   **[Vite 8](https://vite.dev/):** Empaquetador ultra-rápido para un entorno de desarrollo ágil y compilaciones optimizadas.
+*   **[Tailwind CSS 4](https://tailwindcss.com/):** Framework de CSS utilitario para un estilado moderno, responsivo y visualmente atractivo.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📂 Estructura del Proyecto
 
-## Expanding the ESLint configuration
+A continuación se detalla la organización de los directorios y archivos principales de la aplicación:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```text
+fantasy-react/
+├── src/
+│   ├── components/            # Componentes modulares de la interfaz
+│   │   ├── Liga.tsx           # Vista de clasificación general e histórica de jornadas
+│   │   ├── Jugadores.tsx      # Estadísticas acumuladas y marcas de participantes
+│   │   ├── NavBar.tsx         # Barra de navegación por pestañas de la app
+│   │   ├── Reglamento.tsx     # Reglamento oficial de la competición
+│   │   ├── Copa.tsx           # Vista de la competición de Copa por parejas
+│   │   └── Champions.tsx      # Vista de la competición de Champions League
+│   ├── data/
+│   │   ├── datos.ts           # Base de datos local (Participantes, Jornadas, Copa)
+│   │   └── textoReglamento.ts # Texto del reglamento oficial formateado
+│   ├── App.tsx                # Componente principal que gestiona el estado y enrutado básico
+│   ├── tipos.ts               # Definición de interfaces y tipos TypeScript del modelo de datos
+│   ├── index.css              # Configuración de estilos globales y Tailwind CSS
+│   └── main.tsx               # Punto de entrada de la aplicación en el DOM
+├── index.html                 # Plantilla HTML base
+├── package.json               # Configuración del proyecto, dependencias y scripts
+└── tsconfig.json              # Configuración del compilador de TypeScript
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📊 Modelo de Datos
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Las estructuras y tipos de datos se encuentran completamente tipados para asegurar la consistencia del proyecto:
 
+1.  **Interfaces y Tipos:**
+    *   Definidos en [tipos.ts](file:///Users/xavi/Desktop/fantasy-react/src/tipos.ts).
+    *   [Participante](file:///Users/xavi/Desktop/fantasy-react/src/tipos.ts#L1-L4): Representa a un jugador de la liga (`id`, `nombre`).
+    *   [JornadaLiga](file:///Users/xavi/Desktop/fantasy-react/src/tipos.ts#L11-L14): Estructura de cada jornada, que almacena el número de jornada y un array con el participante y sus puntos.
+    *   [CompeticionCopa](file:///Users/xavi/Desktop/fantasy-react/src/tipos.ts#L21-L24): Define en qué jornada de liga se juega la copa y el listado de parejas formadas.
+
+2.  **Base de Datos Estática:**
+    *   Ubicada en [datos.ts](file:///Users/xavi/Desktop/fantasy-react/src/data/datos.ts).
+    *   Contiene los participantes iniciales (`PARTICIPANTES`), las jornadas jugadas con sus puntuaciones reales (`JORNADAS`) y las parejas de Copa (`COPA`).
+
+---
+
+## 🧩 Componentes Principales
+
+La aplicación se compone de vistas modulares renderizadas de forma condicional en [App.tsx](file:///Users/xavi/Desktop/fantasy-react/src/App.tsx):
+
+*   **[NavBar.tsx](file:///Users/xavi/Desktop/fantasy-react/src/components/NavBar.tsx):** Menú superior responsivo que maneja la navegación reactiva entre pestañas de la aplicación.
+*   **[Liga.tsx](file:///Users/xavi/Desktop/fantasy-react/src/components/Liga.tsx):**
+    *   *Clasificación General:* Lista ordenada de participantes según la suma total de sus puntos históricos.
+    *   *Puntos Jornada:* Menú desplegable interactivo para consultar el resultado exacto de cualquier jornada y ordenar a los participantes de mayor a menor puntuación obtenida en ella.
+*   **[Jugadores.tsx](file:///Users/xavi/Desktop/fantasy-react/src/components/Jugadores.tsx):** Acordeón interactivo que calcula dinámicamente para cada jugador:
+    *   Puntos totales acumulados.
+    *   Jornadas ganadas (número de veces que obtuvo la puntuación máxima del grupo).
+    *   Media de puntos por jornada.
+    *   Récord de puntuación máxima obtenida en una sola jornada.
+*   **[Reglamento.tsx](file:///Users/xavi/Desktop/fantasy-react/src/components/Reglamento.tsx):** Renderizado estructurado de las reglas oficiales a partir de [textoReglamento.ts](file:///Users/xavi/Desktop/fantasy-react/src/data/textoReglamento.ts).
+*   **[Copa.tsx](file:///Users/xavi/Desktop/fantasy-react/src/components/Copa.tsx) & [Champions.tsx](file:///Users/xavi/Desktop/fantasy-react/src/components/Champions.tsx):** Paneles preparados para expandir la competición (actualmente marcados en construcción).
+
+---
+
+## 🚀 Instalación y Ejecución en Local
+
+Sigue los siguientes pasos para ejecutar el proyecto en tu entorno local:
+
+1.  **Clonar el repositorio e ir al directorio:**
+    ```bash
+    cd fantasy-react
+    ```
+
+2.  **Instalar dependencias:**
+    ```bash
+    npm install
+    ```
+
+3.  **Iniciar el servidor de desarrollo local:**
+    ```bash
+    npm run dev
+    ```
+    *Abre [http://localhost:5173](http://localhost:5173) en tu navegador para ver la aplicación funcionando.*
+
+4.  **Compilar para producción:**
+    ```bash
+    npm run build
+    ```
+
+---
+
+## 🌐 Despliegue en Producción
+
+El proyecto está configurado para ser desplegado de manera directa en **GitHub Pages** mediante el comando:
+```bash
+npm run deploy
 ```
+Este script ejecuta primero `npm run build` para compilar la versión optimizada en la carpeta `dist/` y luego utiliza la librería `gh-pages` para publicarlo en la rama de despliegue correspondiente.
+
+---

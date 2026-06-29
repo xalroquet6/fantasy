@@ -20,7 +20,7 @@ export default function Navbar({ pestanaActiva, setPestanaActiva }: NavbarProps)
           <button
             key={pestana.id}
             onClick={() => setPestanaActiva(pestana.id)}
-            className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all ${
+            className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all cursor-pointer ${
               isActive 
                 ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20' 
                 : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'

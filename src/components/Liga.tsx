@@ -54,30 +54,45 @@ export default function Liga({ clasificacion, PARTICIPANTES, JORNADAS, verPerfil
 
           <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
             <ul className="space-y-1"> 
-              {clasificacion.map((item, index) => (
-                <li 
-                  key={item.nombre}
-                  className={textoNombre}
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="text-slate-400 font-bold w-6 text-center">{index + 1}º</span>
-                    <button 
-                      onClick={() => {
-                        const playerReal = PARTICIPANTES.find(p => p.nombre === item.nombre);
-                        if (playerReal) verPerfilJugador(playerReal.id);
-                      }}
-                      className={selectNombre}
-                    >
-                      {item.nombre}
-                    </button>
-                  </div>
+              {clasificacion.map((item, index) => {
+                const estiloFila = index === 0
+                  ? "bg-amber-500/10 border-amber-200/50 hover:bg-amber-500/15 text-amber-950 font-semibold"
+                  : index === 1
+                  ? "bg-slate-300/20 border-slate-200/50 hover:bg-slate-300/30 text-slate-800"
+                  : index === 2
+                  ? "bg-amber-700/10 border-amber-200/40 hover:bg-amber-700/15 text-amber-950"
+                  : "border-slate-100 hover:bg-slate-50/80 text-slate-700";
 
-                  <div className="text-right">
-                    <span className="font-extrabold text-indigo-600 text-lg">{item.puntos}</span>
-                    <span className="text-xs text-slate-400 ml-1 font-semibold uppercase tracking-wider">pts</span>
-                  </div>
-                </li>
-              ))}
+                return (
+                  <li 
+                    key={item.nombre}
+                    className={`flex items-center justify-between border-b py-3 last:border-0 last:pb-0 px-2 rounded-lg transition-colors ${estiloFila}`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="font-bold w-6 text-center flex items-center justify-center">
+                        {index === 0 && "🥇"}
+                        {index === 1 && "🥈"}
+                        {index === 2 && "🥉"}
+                        {index > 2 && <span className="text-slate-400">{index + 1}º</span>}
+                      </span>
+                      <button 
+                        onClick={() => {
+                          const playerReal = PARTICIPANTES.find(p => p.nombre === item.nombre);
+                          if (playerReal) verPerfilJugador(playerReal.id);
+                        }}
+                        className={selectNombre}
+                      >
+                        {item.nombre}
+                      </button>
+                    </div>
+
+                    <div className="text-right">
+                      <span className="font-extrabold text-indigo-600 text-lg">{item.puntos}</span>
+                      <span className="text-xs text-slate-400 ml-1 font-semibold uppercase tracking-wider">pts</span>
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>

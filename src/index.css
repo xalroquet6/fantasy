@@ -4,7 +4,6 @@
 /* 2. Inicializamos el motor de Tailwind v4 */
 @import "tailwindcss";
 
-/* 3. Reemplazamos la fuente 'sans' por defecto de Tailwind v4 por Outfit */
 @theme {
   --font-sans: 'Outfit', sans-serif;
 }

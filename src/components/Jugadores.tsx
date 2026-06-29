@@ -85,7 +85,7 @@ export default function Jugadores({
               {/* Botón de la cabecera del acordeón */}
               <button
                 onClick={() => toggleJugador(jugador.id)}
-                className="w-full flex items-center justify-between px-5 py-4 font-bold text-slate-700 text-left"
+                className="w-full flex items-center justify-between px-5 py-4 font-bold text-slate-700 text-left cursor-pointer"
               >
                 <span className="text-base md:text-lg">{jugador.nombre}</span>
                 <span className={`text-xl transition-transform duration-200 text-slate-400 ${estaAbierto ? 'rotate-180 text-amber-500' : ''}`}>
@@ -97,7 +97,7 @@ export default function Jugadores({
               <div 
                 className={`transition-all duration-300 ease-in-out ${
                   estaAbierto ? 'max-h-96 border-t border-slate-100 bg-slate-50/50' : 'max-h-0 pointer-events-none'
-                } overflow-hidden`}
+                } overflow-hidden` }
               >
                 <div className="p-5 grid grid-cols-2 gap-4 text-center">
                   
@@ -112,7 +112,7 @@ export default function Jugadores({
                   </div>
 
                   <div className="bg-white p-3 border border-slate-100 rounded-xl shadow-sm">
-                    <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Media por Partido</p>
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Media por Jornada</p>
                     <p className="text-2xl font-black text-slate-700">{mediaPuntos} <span className="text-xs text-slate-400 font-bold">pts</span></p>
                   </div>
 

@@ -19,8 +19,8 @@ export default function Reglamento({ tituloEstilo }: ReglamentoProps) {
         </p>
       </div>
 
-      {/* ÍNDICE (Le añadimos id y scroll-mt para que el salto sea limpio) */}
-      <div id="indice" className="bg-slate-100/80 border border-slate-200 rounded-2xl p-5 scroll-mt-24">
+      {/* ÍNDICE */}
+      <div id="indice" className="bg-slate-100/80 border border-slate-200 rounded-xl p-5 scroll-mt-24">
         <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Índice del Reglamento</h3>
         <nav className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm font-semibold text-slate-600">
           {TEXTO_REGLAMENTO.map(sec => (
@@ -31,17 +31,17 @@ export default function Reglamento({ tituloEstilo }: ReglamentoProps) {
         </nav>
       </div>
 
-      {/* 📄 SECCIONES DINÁMICAS CON FORMATO EN FUNCIÓN DEL TIPO */}
+      {/* SECCIONES */}
       <div className="space-y-6">
         {TEXTO_REGLAMENTO.map(seccion => (
           <section 
             key={seccion.id} 
             id={seccion.id} 
-            className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm scroll-mt-6"
+            className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm scroll-mt-6"
           >
             {/* Cabecera de la Sección */}
             <div className="flex items-center gap-2.5 mb-4 border-b border-slate-100 pb-3">
-              <span className="flex items-center justify-center bg-slate-100 text-slate-700 text-xs font-black w-6 h-6 rounded-lg">
+              <span className="flex items-center justify-center bg-slate-100 text-slate-700 text-s font-black w-6 h-6 rounded-lg">
                 {seccion.numero}
               </span>
               <h3 className="text-lg font-bold text-slate-800">{seccion.titulo}</h3>
@@ -52,7 +52,7 @@ export default function Reglamento({ tituloEstilo }: ReglamentoProps) {
               {seccion.contenido.map((elemento, index) => {
                 
                 // CASO 1: Es un párrafo normal
-                if (elemento.tipo === 'parrafo' && typeof elemento.texto === 'string') {
+                if (elemento.tipo === 'parrafo') {
                   return (
                     <p key={index} className="text-slate-600 text-sm leading-relaxed font-medium">
                       {elemento.texto}
@@ -61,7 +61,7 @@ export default function Reglamento({ tituloEstilo }: ReglamentoProps) {
                 }
 
                 // CASO 2: Es un subapartado o punto numerado (ej: 3.1)
-                if (elemento.tipo === 'punto' && typeof elemento.texto === 'string') {
+                if (elemento.tipo === 'punto') {
                   return (
                     <div key={index} className="flex gap-3 text-sm font-medium items-start">
                       <span className="font-extrabold text-indigo-600 bg-indigo-50 px-2 py-0.5 text-xs mt-0.5 min-w-10 text-center">
@@ -94,7 +94,7 @@ export default function Reglamento({ tituloEstilo }: ReglamentoProps) {
         ))}
       </div>
 
-      {/* 🔝 FLECHA (Fija abajo a la derecha de la pantalla) */}
+      {/* FLECHA */}
       <a 
         href="#indice" 
         className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-12 h-12 bg-indigo-600/90 text-white font-bold rounded-full shadow-lg hover:bg-indigo-600 transition-all duration-200 hover:-translate-y-1 active:translate-y-0 backdrop-blur-xs"
